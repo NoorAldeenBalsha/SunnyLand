@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: bf44c8b2386ccb54d9fe1498231f4ba0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3112962048991471800
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_0"
+  - first:
+      213: 9015785639182159086
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_1"
+  - first:
+      213: 7147088694766937929
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_2"
+  - first:
+      213: 9200880445265772190
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_3"
+  - first:
+      213: -2257436307634365373
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_4"
+  - first:
+      213: -4582509640034413633
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_5"
+  - first:
+      213: 4465017871461605064
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_6"
+  - first:
+      213: 7877171919198058870
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_7"
+  - first:
+      213: -1843682485720958151
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_8"
+  - first:
+      213: -3131507974197052618
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_9"
+  - first:
+      213: -1426006381931458389
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_10"
+  - first:
+      213: -6568237365940784949
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_11"
+  - first:
+      213: -8518896739854498942
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_12"
+  - first:
+      213: -63271953860573073
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_13"
+  - first:
+      213: 4239932913942832325
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_14"
+  - first:
+      213: -464789327629594527
+    second: "\u2014Pngtree\u2014colorful gaming button set for_6030503_15"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_0"
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 1253
+        width: 562
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 847579672898cc4d0800000000000000
+      internalID: -3112962048991471800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_1"
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 1188
+        width: 248
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eec458a65418e1d70800000000000000
+      internalID: 9015785639182159086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_2"
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 1188
+        width: 248
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9472bcd0d4f8f2360800000000000000
+      internalID: 7147088694766937929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_3"
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 1086
+        width: 562
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9e77e0440810bf70800000000000000
+      internalID: 9200880445265772190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_4"
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 927
+        width: 248
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34c526c73a9fba0e0800000000000000
+      internalID: -2257436307634365373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_5"
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 927
+        width: 248
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb312f5f2c7a760c0800000000000000
+      internalID: -4582509640034413633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_6"
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 919
+        width: 562
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ce5d30f81ee6fd30800000000000000
+      internalID: 4465017871461605064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_7"
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 663
+        width: 248
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6797b7e1026515d60800000000000000
+      internalID: 7877171919198058870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_8"
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 663
+        width: 248
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93b3ef72c8ce966e0800000000000000
+      internalID: -1843682485720958151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_9"
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 540
+        width: 522
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63b7ea2c616aa84d0800000000000000
+      internalID: -3131507974197052618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_10"
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 399
+        width: 248
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba0198d30cec53ce0800000000000000
+      internalID: -1426006381931458389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_11"
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 399
+        width: 248
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc0f6aa6aeee8d4a0800000000000000
+      internalID: -6568237365940784949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_12"
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 387
+        width: 522
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2834db6dc8cc6c980800000000000000
+      internalID: -8518896739854498942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_13"
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 216
+        width: 522
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6845e14e763f1ff0800000000000000
+      internalID: -63271953860573073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_14"
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 119
+        width: 248
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c4ac07658447da30800000000000000
+      internalID: 4239932913942832325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014colorful gaming button set for_6030503_15"
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 119
+        width: 248
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 160de3fa19cbc89f0800000000000000
+      internalID: -464789327629594527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_0": -3112962048991471800
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_1": 9015785639182159086
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_10": -1426006381931458389
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_11": -6568237365940784949
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_12": -8518896739854498942
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_13": -63271953860573073
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_14": 4239932913942832325
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_15": -464789327629594527
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_2": 7147088694766937929
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_3": 9200880445265772190
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_4": -2257436307634365373
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_5": -4582509640034413633
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_6": 4465017871461605064
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_7": 7877171919198058870
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_8": -1843682485720958151
+      "\u2014Pngtree\u2014colorful gaming button set for_6030503_9": -3131507974197052618
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
