@@ -12,16 +12,19 @@ public class PlayerController : MonoBehaviour
     public Transform gfx;
 
 
+    [Header("Health")]
     public int MaxHealth=100;
     public int CurrentHealth;
     public Image healthBar;
     public float smoothSpeed = 10f;
     private float targetFill;
+    public Text HealthTXT;
 
 
+    [Header("Score")]
     int Score;
     public Text ScoreTXT;
-    public Text HealthTXT;
+
 
     [Header("Movement")]
     public float moveSpeed = 5f;
@@ -41,7 +44,6 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isClimbing;
     private float moveInput;
-    private float vertical;
 
 
 
@@ -149,8 +151,6 @@ public class PlayerController : MonoBehaviour
         CurrentHealth -= damge;
         CurrentHealth=Mathf.Clamp(CurrentHealth, 0, MaxHealth);
         targetFill = (float)CurrentHealth / MaxHealth;
-        Debug.Log("Current Health: " + CurrentHealth);
-        Debug.Log("Target Fill: " + targetFill);
         if (CurrentHealth <= 0)
         {
             StartCoroutine(LoadAfterDelay("List"));
@@ -168,8 +168,6 @@ public class PlayerController : MonoBehaviour
                 CurrentHealth += 10;
                 CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
                 targetFill = (float)CurrentHealth / MaxHealth;
-                Debug.Log("Current Health: " + CurrentHealth);
-                Debug.Log("Target Fill: " + targetFill);
 
             }
             
@@ -181,28 +179,25 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             }
         else if (collision.CompareTag("Enemy"))
-        {   if(transform.position.y>collision.transform.position.y)
+        {
+            if (rb.linearVelocity.y < 0) // ÇááÇÚÈ íäÒá ááÃÓÝá
             {
                 Score += 10;
                 ScoreTXT.text = "Score : " + Score;
                 Destroy(collision.gameObject);
+
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 8f); // ÞÝÒÉ ÈÚÏ ÇáÞÊá
             }
-             else
-             {
+            else
+            {
                 TakeDamage(10);
-
             }
-
-
-
-        }
+    }
 
         if (collision.CompareTag("Climb"))
         {
            isNearLadder = true;
         }
-
-
     }
     //====================================================================================================
     // This one for OnTriggerExit2D
