@@ -45,13 +45,20 @@ public class PlayerController : MonoBehaviour
     private bool isClimbing;
     private float moveInput;
 
+    [Header("Death")]
+    public float deathJumpForce = 5f;
+    public float deathGravityScale = 2f;
+    public float deathDestroyTime = 2f;
 
+    private bool isDead = false;
+    private Collider2D col;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        col = GetComponent<Collider2D>();
         CurrentHealth = MaxHealth;
         targetFill = 1f;
         if (healthBar != null)
@@ -113,6 +120,9 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        //====================================================================================================
+        //Death Logic
+        if(isDead) return;
     }
     //====================================================================================================
     // This one for Movement
@@ -145,17 +155,28 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("IsClimb", false);
     }
     //====================================================================================================
+    // This one for Die
+    void Die()
+    {
+        isDead = true;
+        anim.SetTrigger("Hurt");
+        rb.linearVelocity = new Vector2(0f, deathJumpForce);
+        rb.gravityScale = 0;
+        col.enabled = false;
+        StartCoroutine(DeathRoutin());
+    }
+    //====================================================================================================
     // This one for Take Damage
     public void TakeDamage(int damge)
     {
         CurrentHealth -= damge;
         CurrentHealth=Mathf.Clamp(CurrentHealth, 0, MaxHealth);
         targetFill = (float)CurrentHealth / MaxHealth;
+        anim.SetTrigger("Hurt");
         if (CurrentHealth <= 0)
         {
-            StartCoroutine(LoadAfterDelay("List"));
+            Die();
         }
-        anim.SetTrigger("Hurt");
     }
     //====================================================================================================
     //This one for OnTriggerEnter2D
@@ -178,26 +199,27 @@ public class PlayerController : MonoBehaviour
             ScoreTXT.text = "Score : " + Score;
             Destroy(collision.gameObject);
             }
-        else if (collision.CompareTag("Enemy"))
-        {
-            if (rb.linearVelocity.y < 0) // «··«⁄» Ì‰“· ··√”›·
-            {
-                Score += 10;
-                ScoreTXT.text = "Score : " + Score;
-                Destroy(collision.gameObject);
-
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 8f); // ﬁ›“… »⁄œ «·ﬁ ·
-            }
-            else
-            {
-                TakeDamage(10);
-            }
-    }
 
         if (collision.CompareTag("Climb"))
         {
            isNearLadder = true;
         }
+
+        EnemyBase enemy = collision.GetComponent<EnemyBase>();
+        if(enemy == null) return;
+        
+        if(rb.linearVelocity.y < 0 && transform.position.y>collision.transform.position.y+0.8f) // «··«⁄» Ì‰“· ⁄·Ï «·⁄œÊ
+        {
+            Score += 10;
+            ScoreTXT.text = "Score : " + Score;
+            Destroy(enemy.gameObject);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 8f); // ﬁ›“… »⁄œ «·ﬁ ·
+        }
+        else
+        {
+            TakeDamage(10);
+        }
+
     }
     //====================================================================================================
     // This one for OnTriggerExit2D
@@ -218,6 +240,24 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
             jumpCount = 0;
         }
+        EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
+        if (enemy == null) return;
+        foreach (ContactPoint2D contact in collision.contacts)
+        {
+            if (contact.normal.y > 0.8f) // «··«⁄» Ì‰“· ⁄·Ï «·⁄œÊ
+            {
+                Score += 10;
+                ScoreTXT.text = "Score : " + Score;
+                Destroy(enemy.gameObject);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 8f); // ﬁ›“… »⁄œ «·ﬁ ·
+                break;
+            }
+            else
+            {
+                TakeDamage(10);
+                
+            }
+        }
     }
     //====================================================================================================
     // This method is load scene after delay for 0.5 second
@@ -225,6 +265,16 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(sceneName);
+    }
+
+    System.Collections.IEnumerator DeathRoutin()
+    {
+        yield return new WaitForSeconds(0.5f);
+        gfx.rotation=Quaternion.Euler(0f, 0f, 180);
+        rb.gravityScale= deathGravityScale;
+        rb.linearVelocity = new Vector2(0f, deathJumpForce);
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(LoadAfterDelay("List"));
     }
 }
 

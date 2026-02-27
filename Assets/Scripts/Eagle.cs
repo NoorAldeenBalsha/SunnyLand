@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class Eagle : MonoBehaviour
+public class Eagle : EnemyBase
 {
     public float flySpeed = 2f;
     public Transform leftPoint;
     public Transform rightPoint;
-
+    
     private Transform currentTarget;
 
     void Start()
@@ -17,7 +17,10 @@ public class Eagle : MonoBehaviour
     {
         Patrol();
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    { 
+    
+    }
     void Patrol()
     {
         if (leftPoint == null || rightPoint == null) return;
@@ -41,4 +44,6 @@ public class Eagle : MonoBehaviour
         else if (dir < 0)
             transform.localScale = new Vector3(-1, 1, 1);
     }
+
+
 }

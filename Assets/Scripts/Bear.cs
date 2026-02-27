@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bear : MonoBehaviour
+public class Bear : EnemyBase
 {
     public float patrolSpeed = 2f;
     public Transform leftPoint;

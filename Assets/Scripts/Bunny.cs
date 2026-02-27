@@ -1,5 +1,5 @@
 using UnityEngine;
-public class  Bunny : MonoBehaviour
+public class  Bunny : EnemyBase
 {
     public float patrolSpeed = 2f;
     public Transform leftPoint;
