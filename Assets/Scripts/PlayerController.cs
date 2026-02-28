@@ -123,6 +123,12 @@ public class PlayerController : MonoBehaviour
         //====================================================================================================
         //Death Logic
         if(isDead) return;
+        //====================================================================================================
+        // Escape to Setting Scene
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            StartCoroutine(LoadAfterDelay("Setting"));
+        }
     }
     //====================================================================================================
     // This one for Movement
@@ -205,15 +211,15 @@ public class PlayerController : MonoBehaviour
            isNearLadder = true;
         }
 
-        EnemyBase enemy = collision.GetComponent<EnemyBase>();
-        if(enemy == null) return;
+        Eagle eagle = collision.GetComponent<Eagle>();
+        if(eagle == null) return;
         
-        if(rb.linearVelocity.y < 0 && transform.position.y>collision.transform.position.y+0.8f) // «··«⁄» Ì‰“· ⁄·Ï «·⁄œÊ
+        if(rb.linearVelocity.y < 0 && transform.position.y>collision.transform.position.y+0.8f) 
         {
             Score += 10;
             ScoreTXT.text = "Score : " + Score;
-            Destroy(enemy.gameObject);
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 8f); // ﬁ›“… »⁄œ «·ﬁ ·
+            eagle.TakeDamage(1);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 2f); 
         }
         else
         {
@@ -239,23 +245,31 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
             jumpCount = 0;
+            return; // „Â„ Ãœ«
         }
-        EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
-        if (enemy == null) return;
+
+        Bear bear = collision.gameObject.GetComponent<Bear>();
+        Bunny bunny = collision.gameObject.GetComponent<Bunny>();
+
+        if (bear == null && bunny == null)
+            return; // ·Ì” ⁄œÊ
+
         foreach (ContactPoint2D contact in collision.contacts)
         {
-            if (contact.normal.y > 0.8f) // «··«⁄» Ì‰“· ⁄·Ï «·⁄œÊ
+            if (contact.normal.y > 0.8f) // ›Êﬁ «·⁄œÊ
             {
                 Score += 10;
                 ScoreTXT.text = "Score : " + Score;
-                Destroy(enemy.gameObject);
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 8f); // ﬁ›“… »⁄œ «·ﬁ ·
+
+                if (bear != null) bear.TakeDamage(1);
+                if (bunny != null) bunny.TakeDamage(1);
+
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 8f);
                 break;
             }
             else
             {
                 TakeDamage(10);
-                
             }
         }
     }
