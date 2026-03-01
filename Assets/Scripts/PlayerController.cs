@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             jumpCount++;
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.jumpSound);
             anim.SetTrigger("Jump");
         }
         //====================================================================================================
@@ -125,10 +126,10 @@ public class PlayerController : MonoBehaviour
         if(isDead) return;
         //====================================================================================================
         // Escape to Setting Scene
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             StartCoroutine(LoadAfterDelay("Setting"));
-        }
+        }*/
     }
     //====================================================================================================
     // This one for Movement
@@ -181,6 +182,7 @@ public class PlayerController : MonoBehaviour
         anim.SetTrigger("Hurt");
         if (CurrentHealth <= 0)
         {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.playerDeathSound);
             Die();
         }
     }
@@ -193,6 +195,7 @@ public class PlayerController : MonoBehaviour
             if (CurrentHealth < 100)
             {
                 CurrentHealth += 10;
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.healthPickupSound);
                 CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
                 targetFill = (float)CurrentHealth / MaxHealth;
 
@@ -202,6 +205,7 @@ public class PlayerController : MonoBehaviour
         } else if (collision.CompareTag("Score"))
             {
                 Score += 10;
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.gemSound);
             ScoreTXT.text = "Score : " + Score;
             Destroy(collision.gameObject);
             }
@@ -218,11 +222,13 @@ public class PlayerController : MonoBehaviour
         {
             Score += 10;
             ScoreTXT.text = "Score : " + Score;
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyDeathSound);
             eagle.TakeDamage(1);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 2f); 
         }
         else
         {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.playerHitSound);
             TakeDamage(10);
         }
 
@@ -245,22 +251,22 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
             jumpCount = 0;
-            return; // ãåã ÌÏÇð
+            return; 
         }
 
         Bear bear = collision.gameObject.GetComponent<Bear>();
         Bunny bunny = collision.gameObject.GetComponent<Bunny>();
 
         if (bear == null && bunny == null)
-            return; // áíÓ ÚÏæ
+            return;
 
         foreach (ContactPoint2D contact in collision.contacts)
         {
-            if (contact.normal.y > 0.8f) // ÝæÞ ÇáÚÏæ
+            if (contact.normal.y > 0.8f) 
             {
                 Score += 10;
                 ScoreTXT.text = "Score : " + Score;
-
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyDeathSound);
                 if (bear != null) bear.TakeDamage(1);
                 if (bunny != null) bunny.TakeDamage(1);
 
@@ -269,6 +275,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.playerDeathSound);
                 TakeDamage(10);
             }
         }
