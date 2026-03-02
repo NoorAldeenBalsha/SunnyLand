@@ -12,6 +12,10 @@ public class ListOfStages : MonoBehaviour
     {
         StartCoroutine(LoadAfterDelay("First"));
     }
+    public void GoToSecond()
+    {
+        StartCoroutine(LoadAfterDelay("Second"));
+    }
     IEnumerator LoadAfterDelay(string sceneName)
     {
         yield return new WaitForSeconds(1f);

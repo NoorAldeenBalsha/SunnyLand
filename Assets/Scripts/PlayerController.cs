@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -16,14 +17,18 @@ public class PlayerController : MonoBehaviour
     public int MaxHealth=100;
     public int CurrentHealth;
     public Image healthBar;
-    public float smoothSpeed = 10f;
-    private float targetFill;
+    public float smoothSpeedHealth = 10f;
+    private float targetFillHealth;
     public Text HealthTXT;
 
 
     [Header("Score")]
-    int Score;
+    public int MaxScore = 100;
+    public int CurrentScore;
+    public Image ScoreBar;
+    public float smoothSpeedScore = 10f;
     public Text ScoreTXT;
+    private float targetFillScore;
 
 
     [Header("Movement")]
@@ -31,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 7f;
     private int jumpCount = 0;
     private int maxJumpCount = 2;
+    private float verticalInput;
 
 
     [Header("Ground Check")]
@@ -60,33 +66,43 @@ public class PlayerController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         col = GetComponent<Collider2D>();
         CurrentHealth = MaxHealth;
-        targetFill = 1f;
+        targetFillHealth = 1f;
         if (healthBar != null)
         {
-            healthBar.fillAmount = targetFill;
+            healthBar.fillAmount = targetFillHealth;
         }
-
-        Score =0;
-        ScoreTXT.text = "Score : " + Score ;
+        targetFillScore = 0f;
+        if (ScoreBar != null)
+        {
+            ScoreBar.fillAmount = targetFillScore;
+        }
     }
     //====================================================================================================
     // Update is called once per frame
     void Update()
-    {
-        // Health UI
+
+    {   // Health UI
         if (healthBar != null)
         {
-            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, targetFill, Time.deltaTime * smoothSpeed);
+            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, targetFillHealth, Time.deltaTime * smoothSpeedHealth);
             HealthTXT.text = CurrentHealth + " %";
+        }
+        //====================================================================================================
+        // Score UI
+        if (ScoreBar != null)
+        {
+            ScoreBar.fillAmount = Mathf.Lerp(ScoreBar.fillAmount, targetFillScore, Time.deltaTime * smoothSpeedScore);
+            ScoreTXT.text = CurrentScore + " %";
         }
         //====================================================================================================
         // Ground Check
         isGrounded = Physics2D.OverlapCircle(groundCheck.position,groundRadius,groundLayer);
         anim.SetBool("IsGrounded", isGrounded);
+        if (isGrounded && isClimbing) StopClimb();
         //====================================================================================================
         // Movement Input
         moveInput = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        verticalInput = Input.GetAxisRaw("Vertical");
         anim.SetFloat("Speed", Mathf.Abs(moveInput));
         if (moveInput != 0) gfx.localScale = new Vector3(Mathf.Sign(moveInput), 1, 1);
         //====================================================================================================
@@ -103,45 +119,40 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("IsCrouch",Input.GetKey(KeyCode.S) && isGrounded && !isClimbing);
         //====================================================================================================
         // Ladder Logic
-        vertical = Input.GetAxisRaw("Vertical");
-        if (isNearLadder)
+        if (isNearLadder && Mathf.Abs(verticalInput)>0 && !isClimbing)
         {
-            if (vertical > 0 && !isClimbing)
-            {
                 isClimbing = true;
                 rb.gravityScale = 0;
                 anim.SetBool("IsClimb", true);
-            }
-            if (isClimbing)
-            {
-                rb.linearVelocity = new Vector2( moveInput * moveSpeed, vertical * climbSpeed);
-                if (vertical == 0)
-                {
-                    rb.linearVelocity = new Vector2(moveInput * moveSpeed,0f );
-                }
-            }
+  
         }
         //====================================================================================================
         //Death Logic
-        if(isDead) return;
+        if (isDead) return;
         //====================================================================================================
-        // Escape to Setting Scene
-        /*if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            StartCoroutine(LoadAfterDelay("Setting"));
-        }*/
     }
     //====================================================================================================
     // This one for Movement
     void FixedUpdate()
     {
-        if (!isClimbing)
+
+        if (isClimbing)
         {
-            rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocityY);
+            rb.linearVelocity = new Vector2( moveInput * moveSpeed,  verticalInput * climbSpeed );
+
+            if (Mathf.Abs(verticalInput) > 0)
+                anim.speed = 1f;
+            else
+                anim.speed = 0f;
+
+            if (!isNearLadder || (isGrounded && verticalInput <= 0))
+            {
+                StopClimb();
+            }
         }
         else
         {
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocityY);
+            rb.linearVelocity = new Vector2( moveInput * moveSpeed, rb.linearVelocity.y );
         }
     }
     //====================================================================================================
@@ -178,7 +189,7 @@ public class PlayerController : MonoBehaviour
     {
         CurrentHealth -= damge;
         CurrentHealth=Mathf.Clamp(CurrentHealth, 0, MaxHealth);
-        targetFill = (float)CurrentHealth / MaxHealth;
+        targetFillHealth = (float)CurrentHealth / MaxHealth;
         anim.SetTrigger("Hurt");
         if (CurrentHealth <= 0)
         {
@@ -197,16 +208,18 @@ public class PlayerController : MonoBehaviour
                 CurrentHealth += 10;
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.healthPickupSound);
                 CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
-                targetFill = (float)CurrentHealth / MaxHealth;
+                targetFillHealth = (float)CurrentHealth / MaxHealth;
 
             }
             
             Destroy(collision.gameObject);
         } else if (collision.CompareTag("Score"))
             {
-                Score += 10;
+            CurrentScore += 10;
+            CurrentScore = Mathf.Clamp(CurrentScore, 0, MaxScore);
+            targetFillScore = (float)CurrentScore / MaxScore;
+            ScoreTXT.text = CurrentScore + " %";
             AudioManager.Instance.PlaySFX(AudioManager.Instance.gemSound);
-            ScoreTXT.text = "Score : " + Score;
             Destroy(collision.gameObject);
             }
 
@@ -220,8 +233,9 @@ public class PlayerController : MonoBehaviour
         
         if(rb.linearVelocity.y < 0 && transform.position.y>collision.transform.position.y+0.8f) 
         {
-            Score += 10;
-            ScoreTXT.text = "Score : " + Score;
+            CurrentScore += 10;
+            CurrentScore = Mathf.Clamp(CurrentScore, 0, MaxScore);
+            targetFillScore = (float)CurrentScore / MaxScore;
             AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyDeathSound);
             eagle.TakeDamage(1);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 2f); 
@@ -264,8 +278,10 @@ public class PlayerController : MonoBehaviour
         {
             if (contact.normal.y > 0.8f) 
             {
-                Score += 10;
-                ScoreTXT.text = "Score : " + Score;
+                CurrentScore += 20;
+                CurrentScore = Mathf.Clamp(CurrentScore, 0, MaxScore);
+                targetFillScore = (float)CurrentScore / MaxScore;
+                ScoreTXT.text = CurrentScore + " %";
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyDeathSound);
                 if (bear != null) bear.TakeDamage(1);
                 if (bunny != null) bunny.TakeDamage(1);
