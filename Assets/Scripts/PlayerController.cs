@@ -229,7 +229,9 @@ public class PlayerController : MonoBehaviour
         }
 
         Eagle eagle = collision.GetComponent<Eagle>();
-        if(eagle == null) return;
+        Bat bat = collision.GetComponent<Bat>();
+        Battle battle = collision.GetComponent<Battle>();
+        if (eagle == null && bat==null && battle==null) return;
         
         if(rb.linearVelocity.y < 0 && transform.position.y>collision.transform.position.y+0.8f) 
         {
@@ -237,7 +239,9 @@ public class PlayerController : MonoBehaviour
             CurrentScore = Mathf.Clamp(CurrentScore, 0, MaxScore);
             targetFillScore = (float)CurrentScore / MaxScore;
             AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyDeathSound);
-            eagle.TakeDamage(1);
+            if(bat!=null) bat.TakeDamage(1);
+            if (eagle != null) eagle.TakeDamage(1);
+            if (battle != null) battle.TakeDamage(1);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 2f); 
         }
         else
@@ -270,8 +274,10 @@ public class PlayerController : MonoBehaviour
 
         Bear bear = collision.gameObject.GetComponent<Bear>();
         Bunny bunny = collision.gameObject.GetComponent<Bunny>();
+        Dog dog = collision.gameObject.GetComponent<Dog>();
+        Dino dino = collision.gameObject.GetComponent<Dino>();
 
-        if (bear == null && bunny == null)
+        if (bear == null && bunny == null && dog == null && dino == null)
             return;
 
         foreach (ContactPoint2D contact in collision.contacts)
@@ -285,6 +291,8 @@ public class PlayerController : MonoBehaviour
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyDeathSound);
                 if (bear != null) bear.TakeDamage(1);
                 if (bunny != null) bunny.TakeDamage(1);
+                if (dino != null) dino.TakeDamage(1);
+                if (dog != null) dog.TakeDamage(1);
 
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, 8f);
                 break;
