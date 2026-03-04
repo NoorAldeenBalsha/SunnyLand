@@ -130,6 +130,11 @@ public class PlayerController : MonoBehaviour
         //Death Logic
         if (isDead) return;
         //====================================================================================================
+        //Score Check
+        if (CurrentScore >= MaxScore)
+        {
+         StartCoroutine(   LoadAfterDelay("List"));
+        }
     }
     //====================================================================================================
     // This one for Movement
@@ -276,23 +281,57 @@ public class PlayerController : MonoBehaviour
         Bunny bunny = collision.gameObject.GetComponent<Bunny>();
         Dog dog = collision.gameObject.GetComponent<Dog>();
         Dino dino = collision.gameObject.GetComponent<Dino>();
+        Slimer slimer = collision.gameObject.GetComponent<Slimer>();
 
-        if (bear == null && bunny == null && dog == null && dino == null)
+        if (bear == null && bunny == null && dog == null && dino == null && slimer == null)
             return;
 
         foreach (ContactPoint2D contact in collision.contacts)
         {
-            if (contact.normal.y > 0.8f) 
+            if (contact.normal.y > 0.8f)
             {
-                CurrentScore += 20;
-                CurrentScore = Mathf.Clamp(CurrentScore, 0, MaxScore);
-                targetFillScore = (float)CurrentScore / MaxScore;
-                ScoreTXT.text = CurrentScore + " %";
+                
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyDeathSound);
-                if (bear != null) bear.TakeDamage(1);
-                if (bunny != null) bunny.TakeDamage(1);
-                if (dino != null) dino.TakeDamage(1);
-                if (dog != null) dog.TakeDamage(1);
+                if (bear != null)
+                {
+                    bear.TakeDamage(1);
+                    CurrentScore += 20;
+                    CurrentScore = Mathf.Clamp(CurrentScore, 0, MaxScore);
+                    targetFillScore = (float)CurrentScore / MaxScore;
+                    ScoreTXT.text = CurrentScore + " %";
+                }
+                if (bunny != null)
+                {
+                    bunny.TakeDamage(1);
+                    CurrentScore += 20;
+                    CurrentScore = Mathf.Clamp(CurrentScore, 0, MaxScore);
+                    targetFillScore = (float)CurrentScore / MaxScore;
+                    ScoreTXT.text = CurrentScore + " %";
+                }
+                if (dino != null)
+                {
+                    dino.TakeDamage(1);
+                    CurrentScore += 15;
+                    CurrentScore = Mathf.Clamp(CurrentScore, 0, MaxScore);
+                    targetFillScore = (float)CurrentScore / MaxScore;
+                    ScoreTXT.text = CurrentScore + " %";
+                }
+                if (dog != null)
+                {
+                    dog.TakeDamage(1);
+                    CurrentScore += 15;
+                    CurrentScore = Mathf.Clamp(CurrentScore, 0, MaxScore);
+                    targetFillScore = (float)CurrentScore / MaxScore;
+                    ScoreTXT.text = CurrentScore + " %";
+                }
+                if (slimer != null)
+                {
+                    slimer.TakeDamage(1);
+                    CurrentScore += 15;
+                    CurrentScore = Mathf.Clamp(CurrentScore, 0, MaxScore);
+                    targetFillScore = (float)CurrentScore / MaxScore;
+                    ScoreTXT.text = CurrentScore + " %";
+                }
 
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, 8f);
                 break;

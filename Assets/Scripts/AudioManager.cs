@@ -20,24 +20,47 @@ public class AudioManager : MonoBehaviour
     public AudioClip gemSound;
     public AudioClip healthPickupSound;
 
+    private bool musicMuted = false;
+    private bool sfxMuted = false;
+
     void Awake()
-    {    Debug.Log("AudioManager Awake called.");
+    {
         if (Instance == null)
-        {
-            Debug.Log("AudioManager instance Is null.");
             Instance = this;
-            
-        }
         else
-        {
-            Debug.Log("AudioManager instance found.");
-            
-        }
+            Destroy(gameObject);
     }
 
+    // ================== SFX ==================
     public void PlaySFX(AudioClip clip)
     {
-        Debug.Log($"Playing sound: {clip.name}");
+        if (sfxMuted || clip == null) return;
+
         sfxSource.PlayOneShot(clip);
+    }
+
+    public void ToggleSFX()
+    {
+        sfxMuted = !sfxMuted;
+        sfxSource.mute = sfxMuted;
+    }
+
+    // ================== MUSIC ==================
+    public void PlayMusic(AudioClip musicClip)
+    {
+        if (musicClip == null) return;
+
+        if (!musicSource.enabled) 
+            musicSource.enabled = true;
+
+        musicSource.clip = musicClip;
+        musicSource.loop = true;
+        musicSource.Play();
+    }
+
+    public void ToggleMusic()
+    {
+        musicMuted = !musicMuted;
+        musicSource.mute = musicMuted;
     }
 }
